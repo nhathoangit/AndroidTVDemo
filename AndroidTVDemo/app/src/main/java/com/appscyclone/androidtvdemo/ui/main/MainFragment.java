@@ -1,4 +1,4 @@
-package com.appscyclone.androidtvdemo.ui.fragments;
+package com.appscyclone.androidtvdemo.ui.main;
 
 import android.graphics.Movie;
 import android.os.Bundle;
