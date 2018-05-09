@@ -31,7 +31,6 @@ public class MainFragment extends BrowseFragment {
     TheMovieDbAPI mDbAPI;
     SparseArray<MovieRow> mRows;
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -43,31 +42,21 @@ public class MainFragment extends BrowseFragment {
     }
 
     private void setupUIElements() {
-        // setBadgeDrawable(getActivity().getResources().getDrawable(R.drawable.videos_by_google_banner));
         setTitle("Hello Android TV!"); // Badge, when set, takes precedent
-        // over title
         setHeadersState(HEADERS_ENABLED);
         setHeadersTransitionOnBackEnabled(true);
-        // set fastLane (or headers) background color
         setBrandColor(getResources().getColor(R.color.fastlane_background));
-        // set search icon color
         setSearchAffordanceColor(getResources().getColor(R.color.search_opaque));
     }
 
     private void createRows() {
-        // Creates the RowsAdapter for the Fragment
-        // The ListRowPresenter tells to render ListRow objects
         ArrayObjectAdapter rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         for (int i = 0; i < mRows.size(); i++) {
             MovieRow row = mRows.get(i);
-            // Adds a new ListRow to the adapter. Each row will contain a collection of Movies
-            // That will be rendered using the MoviePresenter
             HeaderItem headerItem = new HeaderItem(row.getId(), row.getTitle());
             ListRow listRow = new ListRow(headerItem, row.getAdapter());
             rowsAdapter.add(listRow);
         }
-        // Sets this fragments Adapter.
-        // The setAdapter method is defined in the BrowseFragment of the Leanback Library
         setAdapter(rowsAdapter);
     }
 

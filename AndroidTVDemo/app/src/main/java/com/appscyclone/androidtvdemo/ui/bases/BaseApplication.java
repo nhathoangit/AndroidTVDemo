@@ -2,6 +2,7 @@ package com.appscyclone.androidtvdemo.ui.bases;
 
 import android.app.Application;
 
+import com.appscyclone.androidtvdemo.config.AppConfig;
 import com.appscyclone.androidtvdemo.dagger.components.ApplicationComponent;
 import com.appscyclone.androidtvdemo.dagger.components.DaggerApplicationComponent;
 import com.appscyclone.androidtvdemo.dagger.modules.ApplicationModule;
@@ -26,7 +27,7 @@ public class BaseApplication extends Application {
         // Creates Dagger Graph
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .httpClientModule(new HttpClientModule())
+                .httpClientModule(new HttpClientModule(AppConfig.mConnectType))
                 .build();
 
         mApplicationComponent.inject(this);

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 
 import com.appscyclone.androidtvdemo.dagger.AppScope;
+import com.appscyclone.androidtvdemo.dagger.connect.ApiConfig;
 import com.appscyclone.androidtvdemo.dagger.connect.ApiConfigType;
 import com.appscyclone.androidtvdemo.data.api.TheMovieDbAPI;
 import com.appscyclone.androidtvdemo.data.models.ErrorModel;
@@ -33,6 +34,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class HttpClientModule {
     private static final long DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
+    private ApiConfigType connectType;
+
+    public HttpClientModule(ApiConfigType connectType) {
+        this.connectType = connectType;
+    }
 
     @Provides
     @AppScope
@@ -57,8 +63,7 @@ public class HttpClientModule {
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         httpClient.addInterceptor(new ApiCustomInterceptor());
         return new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/")
-                //.baseUrl(ApiConfig.createConnectionDetail(connectType).getBaseURL())
+                .baseUrl(ApiConfig.createConnectionDetail(connectType).getBaseURL())
                 .client(httpClient.build())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
