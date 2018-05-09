@@ -1,6 +1,7 @@
 package com.appscyclone.androidtvdemo.data.api;
 
 import com.appscyclone.androidtvdemo.data.models.MovieResponseModel;
+import com.appscyclone.androidtvdemo.data.models.ResStoryModel;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -21,4 +22,5 @@ public interface TheMovieDbAPI {
             @Query("api_key") String apiKey,
             @Query("page") int page
     );
+
 }

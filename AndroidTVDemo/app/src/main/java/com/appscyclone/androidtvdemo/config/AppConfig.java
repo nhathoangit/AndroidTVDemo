@@ -7,5 +7,5 @@ package com.appscyclone.androidtvdemo.config;
 import com.appscyclone.androidtvdemo.dagger.connect.ApiConfigType;
 
 public class AppConfig {
-    public static ApiConfigType mConnectType = ApiConfigType.DEVELOP;
+    public static ApiConfigType mConnectType = ApiConfigType.STAGING;
 }

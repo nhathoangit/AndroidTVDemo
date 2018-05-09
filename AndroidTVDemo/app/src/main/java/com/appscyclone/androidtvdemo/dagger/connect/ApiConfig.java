@@ -14,8 +14,7 @@ public class ApiConfig {
                 connection.setBaseURL("https://api.themoviedb.org/3/");
                 break;
             case STAGING:
-                connection.setBaseURL("http://stg-novu.rmlbs.co/api/v1/");
-                connection.setmApiKey("STGACCRMLEXCHANGE26122017");
+                connection.setBaseURL("http://windhost.esy.es/");
                 break;
             case PRELIVE:
                 connection.setBaseURL("https://prelive.fxchange.rmlbs.co/api/v1/");

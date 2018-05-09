@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.appscyclone.androidtvdemo.R;
 import com.appscyclone.androidtvdemo.dagger.modules.HttpClientModule;
 import com.appscyclone.androidtvdemo.data.models.MovieModel;
+import com.appscyclone.androidtvdemo.data.models.StoryModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
 /*
  * Created by NhatHoang on 08/05/2018.
  */
-public class MovieCardView extends BindableCardView<MovieModel> {
+public class MovieCardView extends BindableCardView<StoryModel> {
 
     @BindView(R.id.itemCard_imvPoster)
     ImageView imvPoster;
@@ -30,9 +31,9 @@ public class MovieCardView extends BindableCardView<MovieModel> {
     }
 
     @Override
-    public void bind(MovieModel data) {
+    public void bind(StoryModel data) {
         Glide.with(getContext())
-                .load("http://image.tmdb.org/t/p/w600/" + data.getPosterPath())
+                .load(data.getImage())
                 .into(imvPoster);
     }
 

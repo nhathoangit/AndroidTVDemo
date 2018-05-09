@@ -10,7 +10,7 @@ import android.support.v17.leanback.widget.ArrayObjectAdapter;
  * @since 10/11/16.
  */
 
-public class MovieRow {
+public class MovieRow extends BaseModel {
 
     private int page;
     private int id;

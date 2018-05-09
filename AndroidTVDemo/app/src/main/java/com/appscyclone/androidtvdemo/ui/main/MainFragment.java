@@ -11,10 +11,13 @@ import android.support.v17.leanback.widget.ListRowPresenter;
 import android.util.SparseArray;
 
 import com.appscyclone.androidtvdemo.R;
+import com.appscyclone.androidtvdemo.data.api.StoryApi;
 import com.appscyclone.androidtvdemo.data.api.TheMovieDbAPI;
 import com.appscyclone.androidtvdemo.data.models.MovieModel;
 import com.appscyclone.androidtvdemo.data.models.MovieResponseModel;
 import com.appscyclone.androidtvdemo.data.models.MovieRow;
+import com.appscyclone.androidtvdemo.data.models.ResStoryModel;
+import com.appscyclone.androidtvdemo.data.models.StoryModel;
 import com.appscyclone.androidtvdemo.ui.bases.BaseApplication;
 import com.appscyclone.androidtvdemo.ui.presenters.CardPresenter;
 
@@ -28,7 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MainFragment extends BrowseFragment {
     @Inject
-    TheMovieDbAPI mDbAPI;
+    StoryApi mDbAPI;
     SparseArray<MovieRow> mRows;
 
     @Override
@@ -38,7 +41,7 @@ public class MainFragment extends BrowseFragment {
         setupUIElements();
         createDataRows();
         createRows();
-        fetchNowPlayingMovies();
+        fetchStory();
     }
 
     private void setupUIElements() {
@@ -60,26 +63,46 @@ public class MainFragment extends BrowseFragment {
         setAdapter(rowsAdapter);
     }
 
-    @SuppressLint("CheckResult")
-    private void fetchNowPlayingMovies() {
-        mDbAPI.getNowPlayingMovies("7d667828c3db37bf5f3131272d985c5b", mRows.get(0).getPage())
+//    @SuppressLint("CheckResult")
+//    private void fetchNowPlayingMovies() {
+//        mDbAPI.getNowPlayingMovies("7d667828c3db37bf5f3131272d985c5b", mRows.get(0).getPage())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(response -> {
+//                    bindMovieResponse(response, 0);
+//                    startEntranceTransition();
+//                }, e -> {
+//                    //Timber.e(e, "Error fetching now playing movies: %s", e.getMessage());
+//                });
+//    }
+//
+//    private void bindMovieResponse(MovieResponseModel response, int id) {
+//        MovieRow row = mRows.get(id);
+//        row.setPage(row.getPage() + 1);
+//        for (MovieModel m : response.getResults()) {
+//            if (m.getPosterPath() != null) { // Avoid showing movie without posters
+//                row.getAdapter().add(m);
+//            }
+//        }
+//    }
+
+    private void fetchStory() {
+        mDbAPI.getStories(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    bindMovieResponse(response, 0);
+                    bindStoryResponse(response, 0);
                     startEntranceTransition();
                 }, e -> {
                     //Timber.e(e, "Error fetching now playing movies: %s", e.getMessage());
                 });
     }
 
-    private void bindMovieResponse(MovieResponseModel response, int id) {
+    private void bindStoryResponse(ResStoryModel response, int id) {
         MovieRow row = mRows.get(id);
         row.setPage(row.getPage() + 1);
-        for (MovieModel m : response.getResults()) {
-            if (m.getPosterPath() != null) { // Avoid showing movie without posters
-                row.getAdapter().add(m);
-            }
+        for (StoryModel m : response.stories) {
+            row.getAdapter().add(m);
         }
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
  * @since 10/8/16.
  */
 
-public class MovieResponseModel implements Serializable {
+public class MovieResponseModel extends BaseModel {
 
     private int page;
     private List<MovieModel> results;

@@ -4,6 +4,7 @@ import android.support.v17.leanback.widget.Presenter;
 import android.view.ViewGroup;
 
 import com.appscyclone.androidtvdemo.data.models.MovieModel;
+import com.appscyclone.androidtvdemo.data.models.StoryModel;
 import com.appscyclone.androidtvdemo.others.views.MovieCardView;
 
 /*
@@ -20,7 +21,7 @@ public class CardPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        ((MovieCardView) viewHolder.view).bind((MovieModel) item);
+        ((MovieCardView) viewHolder.view).bind((StoryModel) item);
     }
 
     @Override

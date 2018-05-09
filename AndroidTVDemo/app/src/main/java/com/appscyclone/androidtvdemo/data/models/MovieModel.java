@@ -15,7 +15,7 @@ import java.util.List;
  * @since 10/8/16.
  */
 
-public class MovieModel implements Serializable {
+public class MovieModel extends BaseModel {
 
     private String id;
     @SerializedName("poster_path")

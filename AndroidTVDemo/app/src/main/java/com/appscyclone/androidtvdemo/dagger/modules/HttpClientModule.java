@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.appscyclone.androidtvdemo.dagger.AppScope;
 import com.appscyclone.androidtvdemo.dagger.connect.ApiConfig;
 import com.appscyclone.androidtvdemo.dagger.connect.ApiConfigType;
+import com.appscyclone.androidtvdemo.data.api.StoryApi;
 import com.appscyclone.androidtvdemo.data.api.TheMovieDbAPI;
 import com.appscyclone.androidtvdemo.data.models.ErrorModel;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -53,7 +54,7 @@ public class HttpClientModule {
     }
 
     @Provides
-    @Named("movieDB") // Name is used in case a second Retrofit api is provided.
+    //@Named("movieDB") // Name is used in case a second Retrofit api is provided.
     @AppScope
     public Retrofit createRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -73,6 +74,11 @@ public class HttpClientModule {
     @Provides
     public TheMovieDbAPI provideFithubApi(@Named("movieDB") Retrofit restAdapter) {
         return restAdapter.create(TheMovieDbAPI.class);
+    }
+
+    @Provides
+    public StoryApi provideStoryApi(Retrofit restAdapter) {
+        return restAdapter.create(StoryApi.class);
     }
 
     @SuppressWarnings("ConstantConditions")
