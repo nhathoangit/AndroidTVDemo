@@ -3,7 +3,7 @@ package com.appscyclone.androidtvdemo.ui.presenters;
 import android.support.v17.leanback.widget.Presenter;
 import android.view.ViewGroup;
 
-import com.appscyclone.androidtvdemo.models.MovieModel;
+import com.appscyclone.androidtvdemo.data.models.MovieModel;
 import com.appscyclone.androidtvdemo.others.views.MovieCardView;
 
 /*

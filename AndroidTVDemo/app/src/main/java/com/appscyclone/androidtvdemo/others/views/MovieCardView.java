@@ -5,10 +5,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appscyclone.androidtvdemo.R;
-import com.appscyclone.androidtvdemo.models.MovieModel;
+import com.appscyclone.androidtvdemo.dagger.modules.HttpClientModule;
+import com.appscyclone.androidtvdemo.data.models.MovieModel;
 import com.bumptech.glide.Glide;
-
-import java.util.Locale;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +32,8 @@ public class MovieCardView extends BindableCardView<MovieModel> {
     @Override
     public void bind(MovieModel data) {
         Glide.with(getContext())
-                .load(data.getCardImageUrl())
+                .load("http://image.tmdb.org/t/p/w600/" + data.getPosterPath())
                 .into(imvPoster);
-        tvVote.setText(data.getTitle());
     }
 
     @Override
