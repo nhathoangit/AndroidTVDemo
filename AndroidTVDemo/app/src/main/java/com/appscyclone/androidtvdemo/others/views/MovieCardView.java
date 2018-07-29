@@ -37,6 +37,10 @@ public class MovieCardView extends BindableCardView<StoryModel> {
                 .into(imvPoster);
     }
 
+    public ImageView getPosterIV() {
+        return imvPoster;
+    }
+
     @Override
     protected int getLayoutResource() {
         return R.layout.item_card;
